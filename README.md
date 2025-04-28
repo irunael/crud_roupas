@@ -1,70 +1,100 @@
-# Getting Started with Create React App
+📌 Visão Geral
+Clothes Shop é um sistema CRUD completo para gerenciamento de peças de roupa, desenvolvido com React e Bootstrap. Permite cadastrar, visualizar, editar e excluir itens de um catálogo fashion, com persistência local dos dados.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+✨ Funcionalidades Principais
 
-In the project directory, you can run:
+Catálogo Visual: Cards organizados com imagens das roupas
 
-### `npm start`
+CRUD Completo:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+✅ Cadastro de novas peças
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+📝 Edição de informações
 
-### `npm test`
+🗑️ Exclusão com confirmação
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Upload de Imagens: Adicione fotos dos produtos
 
-### `npm run build`
+Design Responsivo: Adapta para celulares, tablets e desktops
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Persistência: Dados salvos automaticamente no navegador
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+🛠 Tecnologias Utilizadas
 
-### `npm run eject`
+Frontend:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+React.js (v18+)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+React Bootstrap (v5+)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+LocalStorage API
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Estilização:
 
-## Learn More
+Bootstrap 5
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+CSS customizado
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Ferramentas:
 
-### Code Splitting
+npm (gerenciador de pacotes)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Git (controle de versão)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+🚀 Como Executar o Projeto
+Pré-requisitos
 
-### Making a Progressive Web App
+Node.js (v16+)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+npm (v8+)
 
-### Advanced Configuration
+Passo a Passo
+bash
+# 1. Clone o repositório
+git clone https://github.com/irunael/crud_roupas.git
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+# 2. Acesse a pasta do projeto
+cd clothes-shop
 
-### Deployment
+# 3. Instale as dependências
+npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+# 4. Inicie o servidor de desenvolvimento
+npm start
 
-### `npm run build` fails to minify
+# 5. Acesse no navegador
+http://localhost:3000
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+🧩 Estrutura do Projeto
+src/
+├── components/       # Componentes React
+│   ├── CardRoupa.jsx # Card individual de cada roupa
+│   ├── FormularioRoupa.jsx # Modal de cadastro/edição
+│   ├── Header.jsx    # Cabeçalho da aplicação
+│   └── ModalConfirmacao.jsx # Modal de confirmação
+├── services/
+│   └── armazenamento.js # Lógica do LocalStorage
+├── App.js           # Componente principal
+└── App.css          # Estilos globais
+
+
+🎨 Customização
+Você pode facilmente personalizar:
+
+Cores: Modifique as variáveis CSS em App.css
+
+Categorias: Edite o array tiposRoupa em FormularioRoupa.jsx
+
+Layout: Ajuste o grid em App.js (linha 54)
+
+
+📝 Licença
+Este projeto está sob a licença MIT - veja o arquivo LICENSE para detalhes.
+
+Desenvolvido por Pedro e Ricardo
+
+Atualizado em 28/04/2025

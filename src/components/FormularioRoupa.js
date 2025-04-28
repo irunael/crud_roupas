@@ -8,7 +8,8 @@ const FormularioRoupa = ({ roupa, onSalvar, onCancelar }) => {
     tamanho: '',
     cor: '',
     preco: '',
-    marca: ''
+    marca: '',
+    imagem: ''
   });
 
   useEffect(() => {
@@ -21,7 +22,8 @@ const FormularioRoupa = ({ roupa, onSalvar, onCancelar }) => {
         tamanho: '',
         cor: '',
         preco: '',
-        marca: ''
+        marca: '',
+        imagem: ''
       });
     }
   }, [roupa]);
@@ -29,6 +31,17 @@ const FormularioRoupa = ({ roupa, onSalvar, onCancelar }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setDadosFormulario(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setDadosFormulario(prev => ({ ...prev, imagem: reader.result }));
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -48,16 +61,18 @@ const FormularioRoupa = ({ roupa, onSalvar, onCancelar }) => {
   const tamanhos = ['PP', 'P', 'M', 'G', 'GG', 'XG', 'XXG'];
 
   return (
-    <Modal show={true} onHide={onCancelar} size="lg">
-      <Modal.Header closeButton>
-        <Modal.Title>{roupa ? 'Editar Roupa' : 'Adicionar Nova Roupa'}</Modal.Title>
+    <Modal show={true} onHide={onCancelar} size="lg" centered>
+      <Modal.Header closeButton className="border-0 pb-0">
+        <Modal.Title className="fw-bold">
+          {roupa ? 'Editar Roupa' : 'Adicionar Nova Roupa'}
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
           <Row className="mb-3">
             <Col md={6}>
-              <FormGroup>
-                <FormLabel>Nome</FormLabel>
+              <FormGroup className="mb-3">
+                <FormLabel className="fw-bold">Nome</FormLabel>
                 <FormControl
                   type="text"
                   name="nome"
@@ -68,8 +83,8 @@ const FormularioRoupa = ({ roupa, onSalvar, onCancelar }) => {
               </FormGroup>
             </Col>
             <Col md={6}>
-              <FormGroup>
-                <FormLabel>Tipo</FormLabel>
+              <FormGroup className="mb-3">
+                <FormLabel className="fw-bold">Tipo</FormLabel>
                 <FormSelect
                   name="tipo"
                   value={dadosFormulario.tipo}
@@ -87,8 +102,8 @@ const FormularioRoupa = ({ roupa, onSalvar, onCancelar }) => {
 
           <Row className="mb-3">
             <Col md={4}>
-              <FormGroup>
-                <FormLabel>Tamanho</FormLabel>
+              <FormGroup className="mb-3">
+                <FormLabel className="fw-bold">Tamanho</FormLabel>
                 <FormSelect
                   name="tamanho"
                   value={dadosFormulario.tamanho}
@@ -103,8 +118,8 @@ const FormularioRoupa = ({ roupa, onSalvar, onCancelar }) => {
               </FormGroup>
             </Col>
             <Col md={4}>
-              <FormGroup>
-                <FormLabel>Cor</FormLabel>
+              <FormGroup className="mb-3">
+                <FormLabel className="fw-bold">Cor</FormLabel>
                 <FormControl
                   type="text"
                   name="cor"
@@ -115,8 +130,8 @@ const FormularioRoupa = ({ roupa, onSalvar, onCancelar }) => {
               </FormGroup>
             </Col>
             <Col md={4}>
-              <FormGroup>
-                <FormLabel>Marca</FormLabel>
+              <FormGroup className="mb-3">
+                <FormLabel className="fw-bold">Marca</FormLabel>
                 <FormControl
                   type="text"
                   name="marca"
@@ -128,24 +143,53 @@ const FormularioRoupa = ({ roupa, onSalvar, onCancelar }) => {
             </Col>
           </Row>
 
-          <FormGroup className="mb-4">
-            <FormLabel>Preço (R$)</FormLabel>
-            <FormControl
-              type="number"
-              name="preco"
-              value={dadosFormulario.preco}
-              onChange={handleChange}
-              required
-              min="0.01"
-              step="0.01"
-            />
-          </FormGroup>
+          <Row className="mb-3">
+            <Col md={6}>
+              <FormGroup className="mb-3">
+                <FormLabel className="fw-bold">Preço (R$)</FormLabel>
+                <FormControl
+                  type="number"
+                  name="preco"
+                  value={dadosFormulario.preco}
+                  onChange={handleChange}
+                  required
+                  min="0.01"
+                  step="0.01"
+                />
+              </FormGroup>
+            </Col>
+            <Col md={6}>
+              <FormGroup className="mb-3">
+                <FormLabel className="fw-bold">Imagem</FormLabel>
+                <FormControl
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                />
+              </FormGroup>
+            </Col>
+          </Row>
 
-          <div className="d-flex justify-content-end gap-2">
-            <Button variant="secondary" onClick={onCancelar}>
+          {dadosFormulario.imagem && (
+            <div className="text-center mb-4">
+              <img 
+                src={dadosFormulario.imagem} 
+                alt="Preview" 
+                style={{ 
+                  maxWidth: '200px', 
+                  maxHeight: '200px',
+                  borderRadius: '8px',
+                  border: '1px solid #dee2e6'
+                }} 
+              />
+            </div>
+          )}
+
+          <div className="d-flex justify-content-end gap-2 mt-3">
+            <Button variant="secondary" onClick={onCancelar} className="fw-bold">
               Cancelar
             </Button>
-            <Button variant="primary" type="submit">
+            <Button variant="success" type="submit" className="fw-bold">
               {roupa ? 'Atualizar Roupa' : 'Adicionar Roupa'}
             </Button>
           </div>
