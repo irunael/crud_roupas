@@ -8,17 +8,30 @@ const CardRoupa = ({ roupa, onEditar, onExcluir }) => {
   return (
     <>
       <Card className="h-100 shadow-sm border-0">
-        <Card.Img 
-          variant="top" 
-          src={roupa.imagem} 
-          style={{ 
-            height: '200px', 
-            objectFit: 'cover',
-            borderTopLeftRadius: 'calc(0.25rem - 1px)',
-            borderTopRightRadius: 'calc(0.25rem - 1px)'
-          }} 
-        />
+        <div style={{ 
+          height: '200px', 
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#f8f9fa',
+          borderTopLeftRadius: 'calc(0.25rem - 1px)',
+          borderTopRightRadius: 'calc(0.25rem - 1px)',
+          overflow: 'hidden'
+        }}>
+          <img 
+            src={roupa.imagem} 
+            alt={roupa.nome}
+            style={{ 
+              maxWidth: '100%',
+              maxHeight: '100%',
+              width: 'auto',
+              height: 'auto',
+              objectFit: 'scale-down' // Isso mantém a proporção sem cortes
+            }} 
+          />
+        </div>
         <Card.Body className="d-flex flex-column">
+          {/* Resto do conteúdo do card permanece igual */}
           <div className="d-flex justify-content-between align-items-start">
             <Card.Title className="mb-2">{roupa.nome}</Card.Title>
             <Badge bg="secondary" className="ms-2">{roupa.tamanho}</Badge>

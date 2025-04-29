@@ -33,17 +33,6 @@ const FormularioRoupa = ({ roupa, onSalvar, onCancelar }) => {
     setDadosFormulario(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setDadosFormulario(prev => ({ ...prev, imagem: reader.result }));
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const roupaParaSalvar = {
@@ -160,11 +149,14 @@ const FormularioRoupa = ({ roupa, onSalvar, onCancelar }) => {
             </Col>
             <Col md={6}>
               <FormGroup className="mb-3">
-                <FormLabel className="fw-bold">Imagem</FormLabel>
+                <FormLabel className="fw-bold">URL da Imagem</FormLabel>
                 <FormControl
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageChange}
+                  type="url"
+                  name="imagem"
+                  value={dadosFormulario.imagem}
+                  onChange={handleChange}
+                  placeholder="Cole a URL da imagem aqui"
+                  required
                 />
               </FormGroup>
             </Col>
@@ -172,16 +164,26 @@ const FormularioRoupa = ({ roupa, onSalvar, onCancelar }) => {
 
           {dadosFormulario.imagem && (
             <div className="text-center mb-4">
-              <img 
-                src={dadosFormulario.imagem} 
-                alt="Preview" 
-                style={{ 
-                  maxWidth: '200px', 
-                  maxHeight: '200px',
-                  borderRadius: '8px',
-                  border: '1px solid #dee2e6'
-                }} 
-              />
+              <div style={{ 
+                height: '200px', 
+                overflow: 'hidden',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: '#f8f9fa',
+                borderRadius: '8px',
+                border: '1px solid #dee2e6'
+              }}>
+                <img 
+                  src={dadosFormulario.imagem} 
+                  alt="Preview" 
+                  style={{ 
+                    maxWidth: '100%',
+                    maxHeight: '100%',
+                    objectFit: 'contain'
+                  }} 
+                />
+              </div>
             </div>
           )}
 
